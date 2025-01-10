@@ -15,13 +15,25 @@
     };
 };
 
+
+scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
+	compatible = "zmk,behavior-sensor-rotate";
+	#sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+};
+scroll_left_right: behavior_sensor_rotate_mouse_wheel_up_down {
+	compatible = "zmk,behavior-sensor-rotate";
+	#sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_RIGHT >, <&msc SCRL_LEFT>;
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "base";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_up_down>;
 
 // -------------------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |                    |  Y  |  U   |  I  |  O  |  P  | BKSP |
@@ -38,7 +50,7 @@
 
         lower_layer {
             display-name = "lower";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_mkp SCRL_UP SCRL_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_left_right>;
 
 // ------------------------------------------------------------------------------------------------
 // |  TAB |  1  |  2  |  3  |  4  |  5  |                    |  6  |  7  |  8  |  9  |  0  |  DEL |
@@ -55,7 +67,7 @@
 
         raise_layer {
             display-name = "raise";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_mkp SCRL_RIGHT SCRL_LEFT>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
 
 // ------------------------------------------------------------------------------------------------
 // |  TAB |  !  |  @  |  #  |  $  |  %  |                    |  ^  |  &  |  *  |  (  |  )  |  DEL |
